@@ -1,3 +1,6 @@
+<?php 
+    include('cria_sessao.php');
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -5,17 +8,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Inicial</title>
+    <title>Document</title>
 </head>
 <body>
-    <h3>Página Inicial - Projeto Cadastro IFSP</h3>
-    <ul>
-        <li><a href="cadastro_fluxo_caixa.html">Cadastro Fluxo de Caixa</a></li>
-        <li><a href="listar_fluxo_caixa.php">Listagem de Fluxo de Caixa</a></li>
-        <li><a href="consulta_fluxo_caixa.html">Consulta Saldo do Caixa</a></li>
-    </ul>
-    <?php
-
+    <h1>PÁGINA INICIAL - PROJETO CAIXA</h1>
+    <?php 
+        if(!empty($_SESSION['login'])){ // caso a sessão esteja diferente de vazia
+            // executa isso.
+            echo "<h3>Ola ".$_SESSION['login']['nome_usuario']."</h3>"; // pega o nome do login
+            echo "<a href='logout.php'>Sair</a>";
+        }
     ?>
+    <hr>
+    <ul>
+       <li><a href="cadastro_fluxo_caixa.html">Cadastrar</a></li>
+       <li><a href="listar_fluxo_caixa.php">Listar</a></li>
+       <li><a href="consulta_fluxo_caixa.php">Consultar</a></li>
+       <?php 
+       
+       ?>
+    </ul>
 </body>
 </html>
