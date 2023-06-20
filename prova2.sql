@@ -1,11 +1,11 @@
-DROP TABLE IF EXISTS fluxo_caixa;
-CREATE TABLE fluxo_caixa 
-(	
-	id INTEGER NOT NULL AUTO_INCREMENT,
-    data DATE NOT NULL,
-    tipo VARCHAR(10) NOT NULL,
-    valor DECIMAL(10,2) NOT NULL,
-    historico VARCHAR(150) NOT NULL,
-    cheque VARCHAR(3) NOT NULL,
-    primary key (id)
+DROP DATABASE IF EXISTS Prova2;
+CREATE DATABASE Prova2;
+use Prova2;
+CREATE TABLE fluxo_caixa(
+id int primary key,
+data date,
+tipo varchar(10),
+valor decimal(10,2),
+historico varchar(150),
+cheque varchar(3)
 );
