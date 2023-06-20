@@ -1,9 +1,9 @@
 <?php
     $hostname = 'localhost';
     $username = 'root';
-    $password = 'rafinha'; // usando notebook
+    $password = 'rafinha';
     $database = 'prova2';
-    $port = 3306;  // usando notebook
+    $port = 3307; 
     $con = mysqli_connect($hostname, $username, $password, $database, $port);
     if(mysqli_connect_errno()){
         printf("Erro na conexão: %s\n",
