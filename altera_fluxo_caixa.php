@@ -1,63 +1,56 @@
-<?php
-    include('conexao.php');
-    $id = $_GET['id'];
-    $sql = "select * from fluxo_caixa where id = $id";
-    $result = mysqli_query($con, $sql);
-    $row = mysqli_fetch_array($result); 
-?>
+<?php 
+        include('conexao.php');
+        $id = $_GET['id'];//pega o valor do id_usuario para usar como parametro no update
+        $sql = "SELECT * FROM fluxo_caixa where id=$id";
+        $result = mysqli_query($con,$sql);
+        $row = mysqli_fetch_array($result);
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=h1, initial-scale=1.0">
-    <title>Alterar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 <body>
-    <h1>Alterar fluxo de caixa</h1>
-    <form action="altera_fluxo_caixa_exe.php" method="POST">
-        <input type="hidden" name="id" value="<?php echo $row['id']?>">
+    <h1>Alteração de Cadastro dos Fluxo de Bancos</h1>
+    <form action="altera_fluxo_caixa_exe.php" method="post">
+        <input name="id" type="hidden" 
+        value="<?php echo $row['id']?>">
         <div>
-            <label for="data">Data:</label>
-            <input type="date" name="data" id="data" value="<?php echo $row['data']?>">
+            <label for="data">Data: </label>
+            <input type="date" name="data" id="data" 
+            value="<?php echo $row['data']?>">
         </div>
         <div>
-            <label for="tipo">Tipo:</label>
-            <?php 
-                if($row['tipo'] == "entrada"){
-                    echo "<input type='radio' name='tipo' id='tipo' value='entrada' checked> Entrada";
-                    echo "<input type='radio' name='tipo' id='tipo' value='saida'> Saída";
-                }else{
-                    echo "<input type='radio' name='tipo' id='tipo' value='entrada' > Entrada";
-                    echo "<input type='radio' name='tipo' id='tipo' value='saida' checked> Saída";
-                }
-            ?>
+            <label for="tipo">Tipo: </label>
+            <label for="tipo">entrada</label>
+            <input type="radio" name="tipo" value="entrada" id="tipo" <?php if($row['tipo'] == 'entrada'){echo "checked";}?>>
+            <label for="tipo">saida</label>
+            <input type="radio" name="tipo" value="saida" id="tipo" <?php if($row['tipo'] == 'saida'){echo "checked";}?>>
         </div>
         <div>
-            <label for="valor">Valor:</label>
-            <input type="number" min="0" name="valor" step=".01" id="valor" value="<?php echo $row['valor']?>">
+            <label for="valor">Valor: </label>
+            <input type="number" name="valor" id="valor" 
+            value="<?php echo $row['valor']?>">
         </div>
         <div>
-            <label for="historico">Histórico</label>
-            <input type="text" name="historico" id="historico" value="<?php echo $row['historico']?>">
+            <label for="hist">Histórico: </label>
+            <input type="text" name="hist" id="hist" 
+            value="<?php echo $row['historico']?>">
         </div>
         <div>
-            <label for="cheque">Cheque:</label>
-            <select name='cheque' id='cheque' size='1'>
-            <?php 
-                if($row['cheque'] == "sim"){
-                    echo "<option  selected value='sim'>Sim</option>";
-                    echo "<option value='nao'>Nao</option>";
-                }else{
-                    echo "<option value='sim'>Sim</option>";
-                    echo "<option  selected value='nao'>Nao</option>";
-                }
-            ?>
+            <label for="cheque">Cheque: </label>
+            <select name="cheque">
+                <option value="sim" <?php if($row['cheque'] == 'sim'){echo "selected";}?>>Sim</option>
+                <option value="nao" <?php if($row['cheque'] == 'nao'){echo "selected";}?>>Não</option>
             </select>
+  
         </div>
-        <input type="submit" value="Salvar">
+        
+        <input type="submit" value="Salvar"> 
     </form>
-
-    <a href="listar_fluxo_caixa.php">Voltar</a>
+    <a href="index.php">Voltar</a>
 </body>
 </html>
